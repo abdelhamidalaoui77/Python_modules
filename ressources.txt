@@ -1,0 +1,11 @@
+Scripts, Modules, Packages, and Libraries:
+https://realpython.com/videos/scripts-modules-packages-and-libraries/
+
+Are modules and libraries the same thing?:
+https://www.reddit.com/r/learnpython/comments/v05ct3/are_modules_and_libraries_the_same_thing/
+
+What Does “If __name__ == ‘__main__’” Do in Python?:
+https://builtin.com/articles/name-python
+
+What does if __name__ == "__main__": do?:
+https://stackoverflow.com/questions/419163/what-does-if-name-main-do
