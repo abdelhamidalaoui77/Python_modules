@@ -1,0 +1,219 @@
+class joueur:
+    c = 0
+    def __init__(self, p_nom, p_prenom,p_age):
+        self.nom = p_nom
+        self.prenom = p_prenom
+        self.age = p_age
+        joueur.c += 1
+        self.code = joueur.c
+
+    def __str__(self):
+        return f"{self.nom} {self.prenom} {self.age} {self.code} "
+
+    def infojoueur():
+        print("Nombre de Joueurs : ",joueur.c)
+
+class equipe:
+    n = 0
+    def __init__(self,n_nomequipe,liste_joueur):
+        self.nomequipe = n_nomequipe
+        self.joueurs = liste_joueur
+        equipe.n += 1
+        self.code_equipe = equipe.n
+    def __str__(self):
+        joueur_info_list = [f"{j.nom} {j.prenom} ({j.code})" for j in self.joueurs]
+        return f"{self.nomequipe} {self.code_equipe} - Liste Joueur : {joueur_info_list}"
+    def infoequipe():
+        print("Nombre des equipes :", equipe.n)
+
+LJ = []
+LE = []
+def AjouterJoueur():
+    nom = input("Nom : ")
+    prenom = input("Prenom : ")
+    age = int(input("Age : "))
+    joueurs = joueur(nom, prenom, age)
+    LJ.append(joueurs)
+
+def afficher_joueur():
+    joueur.infojoueur()
+    for i in LJ:
+        print(i)
+
+def afficher_equipe():
+    for i in LE :
+        print(i)
+
+def chercher_joueur(xcode):
+    for x in LJ:
+        if x.code == xcode:
+            return x
+
+def chercher_equipes(xcode):
+    for x in LE:
+        if x.code_equipe == xcode:
+            return x
+def AjouterEquipe():
+   nomequipe = input("Nom D'equipe : ")
+   listejoueur = []
+   nombre = int(input("Donner le nombre de joueurs a ajouter :"))
+   for i in range(nombre) :
+       while True :
+        code = int(input("donner le code du joueur : "))
+        if chercher_joueur(code) and chercher_joueur(code) not in listejoueur:
+            listejoueur.append(chercher_joueur(code))
+            break
+   equipes = equipe(nomequipe,listejoueur)
+   LE.append(equipes)
+
+def supp_joueur(xcode):
+    if chercher_joueur(xcode):
+        LJ.remove(chercher_joueur(xcode))
+        print("suppression éffectuée")
+        joueur.c -= 1
+    else:
+        print("Aucun Joueur avec ce code")
+
+def supp_equipe(xcode):
+    if chercher_equipes(xcode):
+        LE.remove(chercher_equipes(xcode))
+        print("suppression éffectuée")
+        equipe.n -= 1
+    else:
+        print("Aucune Equipe avec ce code")
+
+def chercher_indice(n):
+    for i in range(len(LJ)):
+        if LJ[i].code==n:
+            return i
+    return -1
+
+def modif_joueur(n):
+    indice=chercher_indice(n)
+    if indice==-1:
+        print("ce N° n'existe pas")
+    else:
+        LJ[indice].nom=input("Donner le nouveau Nom : ")
+        LJ[indice].prenom=input("Donner le nouveau Prenom : ")
+        LJ[indice].age=int(input("donner le nouveau age"))
+
+def modif_equipe(n):
+    indice=chercher_indice(n)
+    if indice==-1:
+        print("ce equipe n'existe pas")
+    else:
+        LE[indice].nomequipe=input("donner nouveau nom d'equipe:")
+
+
+def export_joueur():
+    f=open("joueur.txt","w")
+    for x in LJ:
+        f.writelines(f"{x}\n")
+
+def export_equipe():
+    f=open("equipe.txt","w")
+    for x in LE:
+        f.writelines(f"{x}\n")
+
+def importjoueur():
+    f = open("joueur.txt", "r")
+    line = f.readlines()
+    f.close()
+    for i in line:
+        rep = i.split()
+        nom, prenom, age, code = rep[0], rep[1], rep[2], rep[3]
+        obj1 = joueur(nom, prenom, age)
+        obj1.code = code
+        LJ.append(obj1)
+
+def importequipe():
+    f= open("equipe.txt", "r")
+    line = f.readlines()
+    f.close()
+    for i in line:
+        rep = i.split()
+        nomequipe,code_equipe  = rep[0], rep[1]
+        obj1 = equipe(nomequipe)
+        obj1.code_equipe = code_equipe
+
+        nom, prenom, age, num = rep[2], rep[3], rep[4], rep[5]
+        obj2 = joueur(nom, prenom, age)
+        obj2.num = num
+        obj1.liste_joueur.append(obj2)
+
+        LE.append(obj1)
+
+
+
+
+while(True):
+    print("1.Ajouter un Joueur")
+    print("2.Chercher un Joueur")
+    print("3.Afficher tout les Joueurs")
+    print("4.Supprimer un Joueur")
+    print("5.Modification d'un joueur ")
+    print("6.mouvez a menu d'equipe")
+    print("7.export Joueur")
+    print("8.importer fichier")
+    print("Tapper le N° de votre choix :")
+    x=int(input())
+    if x==1:
+        AjouterJoueur()
+    elif x==2:
+        n=int(input(("Donner le N°stg à chercher :")))
+        if chercher_joueur(n):
+            print(chercher_joueur(n))
+        else:
+            print("Aucun Stagiaire avec ce N°")
+    elif x==3:
+        afficher_joueur()
+    elif x==4:
+        d=int(input("donner le N° du joueur à Supprimer :"))
+        supp_joueur(d)
+    elif x==5:
+        s=int(input(print("Donner le N° de joueur :")))
+        modif_joueur(s)
+    elif x==6:
+        break
+    elif x==7:
+        export_joueur()
+    elif x==8:
+        importjoueur()
+    else:
+        print("Donner un choix entre 1 et 5")
+
+
+while(True):
+    print("1.Ajouter une equipe")
+    print("2.Chercher une equipe")
+    print("3.Afficher tout les equipes")
+    print("4.Supprimer une equipe")
+    print("5.Modification d'une equipe ")
+    print("6.Quitter")
+    print("7.export equipe")
+    print("8.import equipe")
+    print("Tapper le N° de votre choix :")
+    x=int(input())
+    if x==1:
+        AjouterEquipe()
+    elif x==2:
+        n=int(input(("Donner le nombre d'equipe a chercher :")))
+        if chercher_equipes(n):
+            print(chercher_equipes(n))
+        else:
+            print("Aucun Equipe avec ce N°")
+    elif x==3:
+        afficher_equipe()
+    elif x==4:
+        d=int(input("donner le N° d'equipe à Supprimer :"))
+        supp_equipe(d)
+    elif x==5:
+        s=int(input(print("Donner le N° de equipe :")))
+        modif_equipe(s)
+    elif x==6:
+        break
+    elif x==7:
+        export_equipe()
+    elif x==8:
+        importequipe()
+

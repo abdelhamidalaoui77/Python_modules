@@ -1,0 +1,46 @@
+{
+  "produites": [
+    {
+      "id": "1",
+      "nom": "Ordinateur",
+      "prix": 20000,
+      "enstock": true,
+      "image": "/assets/Laptop.png"
+    },
+    {
+      "id": "2",
+      "nom": "Imprimante",
+      "prix": 2000,
+      "enstock": false,
+      "image": "/assets/imprimante.jpg"
+    },
+    {
+      "id": "3",
+      "nom": "SSD 1TO",
+      "prix": 1500,
+      "enstock": true,
+      "image": "/assets/ssd.png"
+    },
+    {
+      "id": "4",
+      "nom": "Casque bluetooth",
+      "prix": 400,
+      "enstock": true,
+      "image": "/assets/casque-bluetooth.jpeg"
+    },
+    {
+      "id": "5",
+      "nom": "smartphone",
+      "prix": "5000",
+      "enstock": false,
+      "image": "/assets/smartphone.jpg"
+    },
+    {
+      "id": "7",
+      "nom": "samsung",
+      "prix": "6500",
+      "enstock": true,
+      "image": "/assets/samsung.jpg"
+    }
+  ]
+}

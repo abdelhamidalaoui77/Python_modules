@@ -1,0 +1,250 @@
+Exercice :
+Objectif : 
+•	Etudier la classe abstraite
+•	Etudier les accesseurs et modificateurs (geterrs et setters)
+Enoncé :
+Un parc auto se compose des voitures et des camions qui ont des caractéristiques communes regroupées dans la classe Véhicule.
+•	   Chaque véhicule est caractérisé par son matricule, l’année de son modèle, son prix.
+•	   Lors de la création d’un véhicule, son matricule est incrémenté selon le nombre de véhicules créés.
+•	   Tous les attributs de la classe véhicule sont supposés privés. Ce qui oblige la création des accesseurs (get…) et des mutateurs (set….) ou les propriétés.
+•	   La classe Véhicule possède également deux méthodes abstraites demarrer() et accélérer() qui seront définies dans les classes dérivées et qui afficheront des messages personnalisés.
+•	   La méthode __str__() de la classe Véhicule retourne une chaîne de caractères qui contient les valeurs du matricule, de l’année du modèle et du prix.
+•	   Les classes Voiture et Camion étendent la classe Véhicule en définissant concrètement les méthodes Accelerer() et Demarrer() en affichant des messages personnalisés.
+Travail à faire:
+•	   Créer la classe abstraite Véhicule.
+•	   Créer les classes Camion et Voiture.
+•	   Préparer un programme test qui permet de tester la classe Voiture et la classe Camion
+
+______________________________
+
+
+
+
+part 1: strong lower back
+- 1. tucked - 10 reps
+- 2. straddle - 10 reps
+- 3. pike - 10 reps
+
+part 2: straight arm scapula strength
+- 1. leaning push-up: 30 sec
+- 2. tucked planche: 10 sec
+- 3. floating press: 5 sec
+
+part 3: compression / posterior chain mobility
+- 1. pike slides - 15 reps
+- 2. straddle pumps - 25 reps & 10 sec hold
+- 3. straddle ups - 15 reps
+
+part 4: handstand / balance
+- 1. handstand heel pushes - 10 reps
+- 2. handstand scissors - 10 reps
+- 3. free handstand - 30 sec
+_______________________________________________________________________________
+from abc import ABC, abstractmethod
+
+class Vehicule(ABC):
+    def __init__(self, annee_modele, prix):
+        self.matricule = None  # Will be set during initialization
+        self.annee_modele = annee_modele
+        self.prix = prix
+        Vehicule.increment_matricule()
+
+    @property
+    def matricule(self):
+        return self._matricule
+
+    @matricule.setter
+    def matricule(self, value):
+        self._matricule = value
+
+    @property
+    def annee_modele(self):
+        return self._annee_modele
+
+    @annee_modele.setter
+    def annee_modele(self, value):
+        self._annee_modele = value
+
+    @property
+    def prix(self):
+        return self._prix
+
+    @prix.setter
+    def prix(self, value):
+        self._prix = value
+
+    @abstractmethod
+    def demarrer(self):
+        pass
+
+    @abstractmethod
+    def accelerer(self):
+        pass
+
+    def __str__(self):
+        return f"Matricule: {self.matricule} / Année du modèle: {self.annee_modele} / Prix: {self.prix}"
+
+    @classmethod
+    def increment_matricule(cls):
+        if not hasattr(cls, '_matricule_counter'):
+            cls._matricule_counter = 0
+        cls._matricule_counter += 1
+
+        if cls._matricule_counter < 10:
+            cls._matricule_prefix = '00'
+        elif cls._matricule_counter < 100:
+            cls._matricule_prefix = '0'
+        else:
+            cls._matricule_prefix = ''
+
+        cls._matricule_format = f"{cls._matricule_prefix}{cls._matricule_counter}"
+        
+
+class Voiture(Vehicule):
+    def demarrer(self):
+        print("Voiture démarrée.")
+
+    def accelerer(self):
+        print("Voiture en accélération.")
+
+
+class Camion(Vehicule):
+    def demarrer(self):
+        print("Camion démarré.")
+
+    def accelerer(self):
+        print("Camion en accélération.")
+
+
+# Test Program
+if __name__ == "__main__":
+    voiture1 = Voiture(2022, 25000)
+    print(voiture1)
+
+    camion1 = Camion(2021, 50000)
+    print(camion1)
+
+    voiture1.demarrer()
+    voiture1.accelerer()
+
+    camion1.demarrer()
+    camion1.accelerer()
+
+____________________version2____________________
+
+
+from abc import ABC , abstractmethod
+class vehicule(ABC):
+    c = 0
+    def _init_(self,l,p):
+        vehicule.c += 1
+        self.__matricule = vehicule.c
+        self.__lannee_module = l
+        self.__prix = p
+
+    def get_annemod(self):
+        return self.__lannee_module
+    def set_annemod(self,nombre):
+        self.__lannee_module = nombre
+    def get_prix(self):
+        return self.__prix
+    def set_prix(self,nombre):
+        self.__prix = nombre
+    lannee_module = property(get_annemod,set_annemod)
+    prix = property(get_prix,set_prix)
+
+
+    def demarrer(self):
+        pass
+
+    def accelerer(self):
+        pass
+    def _str_(self):
+        return (
+            f"matricule: {self.__matricule} "
+            f"l anne de module: {self.__lannee_module} "
+            f"prix: {self.__prix} "
+        )
+class voiture(vehicule):
+    def _init_(self,annemod,pr):
+       super()._init_(annemod,pr)
+
+    def get_annemod(self):
+        return self.__lannee_module
+
+    def set_annemod(self, nombre):
+        self.__lannee_module = nombre
+
+    def get_prix(self):
+        return self.__prix
+
+    def set_prix(self, nombre):
+        self.__prix= nombre
+    annemod = property(get_annemod,set_annemod)
+    pr= property(get_prix,set_prix)
+
+    def demarrer(self):
+        print("cest un message de class voiture")
+
+    def accelerer(self):
+        print("cest un message de classe voiture")
+
+    def _str_(self):
+        x=super(). _str_()
+        return f"{x}"
+
+class camions(vehicule):
+    def _init_(self,anmod,prix_cam):
+       super()._init_(anmod,prix_cam)
+
+    def get_anmod(self):
+        return self.__lannee_module
+
+    def set_anmod(self, nombre):
+        self.__lannee_module = nombre
+
+    def get_prix_cam(self):
+        return self.__prix
+
+    def set_prix_cam(self, nombre):
+        self.__prix = nombre
+    anmod = property(get_anmod,set_anmod)
+    prix_cam = property(get_prix_cam,set_prix_cam)
+
+    def demarrer(self):
+        print("cest un message de class camoins")
+
+    def accelerer(self):
+        print("cest un message de classe camoins")
+
+    def _str_(self):
+        x=super(). _str_()
+        return f"{x}"
+
+#teste le programme___________________________________________________________________
+#_objet voiture________________________________
+v1=voiture(2020,90000)
+v1.lannee_module=2024
+v1.prix=50000
+print(v1)
+v1.demarrer()
+v1.accelerer()
+
+
+#_objet camoins________________________________
+cam1=camions(2001,150000)
+cam1.lannee_module=1997
+cam1.prix=66666
+print(cam1)
+cam1.demarrer()
+cam1.accelerer()
+_________________________________________________________________________
+seven flim                    westwolrd serie
+
+https://drive.google.com/drive/folders/1PlgpG_QVXYK82eZgqAxT4I_8UsRUgTa5?fbclid=
+IwAR2b73PISJNgGKmp8586sHwLpmnsfSF
+7uuBviPCEzHXeMHgIOEqJK82CpDM
+
+
+
+
