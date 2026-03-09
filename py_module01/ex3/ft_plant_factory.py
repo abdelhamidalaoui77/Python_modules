@@ -18,10 +18,11 @@ if __name__ == "__main__":
     plants = []
 
     print("=== Plant Factory Output ===")
-
+    i = 0
     for name, height, age in plant_data:
         plant = Plant(name, height, age)
         plants.append(plant)
+        i += 1
         print(f"Created: {plant.name} ({plant.height}cm, {plant.age} days)")
 
-    print(f"Total plants created: {len(plants)}")
+    print(f"Total plants created: {i}")
