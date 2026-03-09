@@ -14,31 +14,6 @@ Travail à faire:
 •	   Créer la classe abstraite Véhicule.
 •	   Créer les classes Camion et Voiture.
 •	   Préparer un programme test qui permet de tester la classe Voiture et la classe Camion
-
-______________________________
-
-
-
-
-part 1: strong lower back
-- 1. tucked - 10 reps
-- 2. straddle - 10 reps
-- 3. pike - 10 reps
-
-part 2: straight arm scapula strength
-- 1. leaning push-up: 30 sec
-- 2. tucked planche: 10 sec
-- 3. floating press: 5 sec
-
-part 3: compression / posterior chain mobility
-- 1. pike slides - 15 reps
-- 2. straddle pumps - 25 reps & 10 sec hold
-- 3. straddle ups - 15 reps
-
-part 4: handstand / balance
-- 1. handstand heel pushes - 10 reps
-- 2. handstand scissors - 10 reps
-- 3. free handstand - 30 sec
 _______________________________________________________________________________
 from abc import ABC, abstractmethod
 
@@ -239,12 +214,3 @@ print(cam1)
 cam1.demarrer()
 cam1.accelerer()
 _________________________________________________________________________
-seven flim                    westwolrd serie
-
-https://drive.google.com/drive/folders/1PlgpG_QVXYK82eZgqAxT4I_8UsRUgTa5?fbclid=
-IwAR2b73PISJNgGKmp8586sHwLpmnsfSF
-7uuBviPCEzHXeMHgIOEqJK82CpDM
-
-
-
-
