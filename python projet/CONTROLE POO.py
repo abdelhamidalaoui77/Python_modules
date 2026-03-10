@@ -1,8 +1,9 @@
-from abc import ABC,abstractmethod
+from abc import ABC, abstractmethod
+
 
 class Véhicule(ABC):
 
-    def __init__(self,asm,prix):
+    def __init__(self, asm, prix):
         self.matricule = None
         self.anneé_modéle = asm
         self.prix = prix
@@ -12,25 +13,24 @@ class Véhicule(ABC):
     def getmatricule(self):
         return self._matricule
 
-
-    @matricule.setter
-    def setmatricule(self,M):
+    # @matricule.setter
+    def setmatricule(self, M):
         self._matricule = M
 
     @property
     def getanne(self):
         return self._anneé_modéle
 
-    @anneé_modéle.setter
-    def setanné(self,A):
+    # @anneé_modéle.setter
+    def setanné(self, A):
         self.__anneé_modéle = A
 
     @property
     def getprix(self):
         return self.__prix
 
-    @prix.setter
-    def setprix(self,P):
+    # @prix.setter
+    def setprix(self, P):
         self.__prix = P
 
     @abstractmethod
@@ -42,7 +42,8 @@ class Véhicule(ABC):
         pass
 
     def __str__(self):
-        return f"Matricule: {self.__matricule} / Année du modèle: {self.__anneé_modéle} / Prix: {self.__prix} DH"
+        return f"Matricule: {self.__matricule} / Année du modèle: {self.__anneé_modéle}"
+                f"/ Prix: {self.__prix} DH"
 
     @classmethod
     def increment_matricule(cls):

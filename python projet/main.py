@@ -10,7 +10,7 @@
 #         T[i]=int(input("donner la note de stagiaire"+str(i+1)+":"))
 # print("les notes sont: ")
 # for i in range (0,N-1):
-        # print(T[i])
+# print(T[i])
 
 # import numpy
 # from numpy import array
