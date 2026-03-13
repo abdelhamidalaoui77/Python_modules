@@ -35,7 +35,8 @@ def supprimer_joueurs(numero):
 def modifier_nom_prenom(numero):
     choix_nom = " "
     while choix_nom != "oui" and choix_nom != "non":
-        choix_nom = input(("Voulez-vous modifier le nom ( Oui ) ou ( Non ):")).lower()
+        choix_nom = input(("Voulez-vous modifier le nom ( Oui ) ou "
+                           "( Non ):")).lower()
 
     if choix_nom == "oui":
         for i in LJ:
@@ -47,7 +48,8 @@ def modifier_nom_prenom(numero):
 
     choix_prenom = " "
     while choix_prenom != "oui" and choix_prenom != "non":
-        choix_prenom = input(("Voulez-vous modifier le prenom (Oui ou Non) : ")).lower()
+        choix_prenom = input(("Voulez-vous modifier le prenom (Oui ou "
+                              "Non) : ")).lower()
 
     if choix_prenom == "oui":
         for i in LJ:
@@ -66,7 +68,7 @@ def afficher_joueurs():
 class Equipe():
     codeequipe = 0
 
-    def _init_(self, nom_equipe):
+    def __init__(self, nom_equipe):
         self.nom = nom_equipe
         self.listejoueurs = []
         Equipe.codeequipe += 1
@@ -78,8 +80,9 @@ class Equipe():
             x = x + (str(i) + "  ")
         return x
 
-    def _str_(self):
-        return f"{self.nom}  [{self.afficher_listejoueurs()}]  -Code Equipe: {self.num}"
+    def __str__(self):
+        s = f"{self.nom} [{self.afficher_listejoueurs()}] -Code Equipe:{self.num}"
+        return s
 
 
 def chercher_joueur(code):
@@ -93,7 +96,8 @@ LE = []
 
 def ajouter_equipe():
     nom = input("Donner le nom d'equipe :")
-    nombre_joueur = int(input("donner le nombre de joueur que voulez-vous ajouter :"))
+    nombre_joueur = int(input("donner le nombre de joueur que voulez-vous"
+                              " ajouter :"))
     objEquipe = Equipe(nom)
     for i in range(nombre_joueur):
         code = int(input("donner le code de joueur:"))
@@ -146,11 +150,13 @@ while True:
         afficher_joueurs()
 
     elif choix == 3:
-        numero = int(input("donner le numero de joueur que vous voulez modifier :"))
+        numero = int(input("donner le numero de joueur que vous voulez"
+                           " modifier :"))
         modifier_nom_prenom(numero)
 
     elif choix == 4:
-        numero = int(input("donner le numero de joueur que vous voulez supprimer : "))
+        numero = int(input("donner le numero de joueur que vous voulez"
+                           " supprimer : "))
         supprimer_joueurs(numero)
 
     elif choix == 5:
@@ -176,11 +182,13 @@ while True:
         afficher_equipe()
 
     elif choix == 9:
-        code_equipe = int(input("donner le code d'equipe que voulez-vous changer son nom :"))
+        code_equipe = int(input("donner le code d'equipe que voulez-vous"
+                                " changer son nom :"))
         modifier_nom_equipe(code_equipe)
 
     elif choix == 10:
-        code_equipe = int(input("donner le code d'equipe que voulez-vous supprimer :"))
+        code_equipe = int(input("donner le code d'equipe que voulez-vous"
+                                " supprimer :"))
         supprimer_equipe(code_equipe)
 
     elif choix == 11:

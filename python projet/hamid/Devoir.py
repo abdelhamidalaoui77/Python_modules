@@ -163,9 +163,11 @@ while(True):
         if chercher_joueur(n):
             print(chercher_joueur(n))
         else:
-            print("Aucun Stagiaire avec ce N°")
+            print("Aucun Joueur avec ce N°")
     elif x==3:
+        print("=== La liste des joueures ===")
         afficher_joueur()
+        print()
     elif x==4:
         d=int(input("donner le N° du joueur à Supprimer :"))
         supp_joueur(d)
@@ -191,8 +193,8 @@ while(True):
     print("6.Quitter")
     print("7.export equipe")
     print("8.import equipe")
-    print("Tapper le N° de votre choix :")
-    x=int(input())
+    print()
+    x=int(input("Tapper le N° de votre choix :"))
     if x==1:
         AjouterEquipe()
     elif x==2:
