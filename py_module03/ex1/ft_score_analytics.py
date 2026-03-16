@@ -1,12 +1,17 @@
 import sys
 
 
-def handle_invalid_inputs(values) -> None:
+def handle_invalid_inputs(values: list) -> None:
     for e in values:
         try:
-            int(e)
+            n = -1
+            n = int(e)
         except ValueError:
-            raise ValueError("Invalid number")
+            raise ValueError("Invalid score occured !!! please ensure all"
+                             " inputs are valid numbers")
+        if (n < 0):
+            raise ValueError("Negative scores are unacceptable !!! Please"
+                             " enter scores greater than or equal 0")
 
 
 if __name__ == "__main__":

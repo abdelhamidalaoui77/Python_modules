@@ -1,5 +1,5 @@
 
-def water_plants(plant_list) -> None:
+def water_plants(plant_list: list) -> None:
     print("Opening watering system")
     try:
         for plant in plant_list:
