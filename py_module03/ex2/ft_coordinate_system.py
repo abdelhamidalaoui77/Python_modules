@@ -53,7 +53,7 @@ if __name__ == "__main__":
         print(f'Parsing invalid coordinates: "{value}"')
         print(f"Error parsing coordinates: {msg}")
         print(f'Error details - Type: ValueError, Args: ("{msg}",)')
-    
+
     print("\nUnpacking demonstration:")
     x1, x2, x3 = position
     print(f"Player at x={x1}, y={x2}, z={x3}")

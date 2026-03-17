@@ -15,7 +15,8 @@ def parse_inventory(args: list[str]) -> dict | None:
         try:
             qty = int(qty)
         except ValueError:
-            raise ValueError("Invalid number; All values should be an int")
+            raise ValueError("Invalid number or Argument; All values"
+                             " should be an int")
 
         inventory.update({name: qty})
 
