@@ -3,15 +3,6 @@ def remove_duplicates(achievements: list) -> set:
     return set(achievements)
 
 
-def is_rare_achievments(data: set, rare_acheivments: set) -> int:
-
-    for x in data:
-        for rare in rare_acheivments:
-            if x == rare:
-                return 1
-    return 0
-
-
 def ft_achievement_tracker() -> None:
 
     print("=== Achievement Tracker System ===\n")
@@ -27,14 +18,14 @@ def ft_achievement_tracker() -> None:
     bob = remove_duplicates(data2)
     charlie = remove_duplicates(data3)
 
-    print(f"player alice achieevments {alice}")
-    print(f"player bob achieevments {bob}")
-    print(f"player charlie achieevments {charlie}")
+    print(f"player alice achievments: {alice}")
+    print(f"player bob achievments: {bob}")
+    print(f"player charlie achievments: {charlie}")
     print()
 
     print("=== Achievement Analytics ===")
     all_uniqe_achiev = alice.union(bob).union(charlie)
-    print(f"{all_uniqe_achiev}")
+    print(f"All unique achievements: {all_uniqe_achiev}")
     print(f"Total unique achievements: {len(all_uniqe_achiev)}\n")
 
     common_to_all = alice.intersection(bob).intersection(charlie)
