@@ -11,8 +11,8 @@ def parse_coordinates(coord_str: str) -> tuple[int, int, int] | None:
 
         return (x, y, z)
 
-    except ValueError as e:
-        raise ValueError(e)
+    except ValueError as err:
+        raise ValueError(err, coord_str)
 
 
 def distance_3d(p1: tuple[int, int, int], p2: tuple[int, int, int]) -> float:
@@ -40,18 +40,21 @@ if __name__ == "__main__":
         dist = distance_3d(origin, position)
         print(f"Distance between {origin} and {position}: {dist}\n")
     except ValueError as err:
-        print(f"Error parsing coordinates: {err}")
-        print(f'Error details - Type: ValueError, Args: ("{err}",)')
+        msg, value = err.args
+        print(f"Error parsing coordinates: {msg}")
+        print(f'Error details - Type: ValueError, Args: ("{msg}",)')
 
     try:
-        print(f'Parsing invalid coordinates: "{invalid_pos}"')
         position_2 = parse_coordinates(invalid_pos)
         dist = distance_3d(origin, position_2)
         print(f"Distance between {origin} and {position_2}: {dist}")
     except ValueError as err:
-        print(f"Error parsing coordinates: {err}")
-        print(f'Error details - Type: ValueError, Args: ("{err}",)\n')
-    print("Unpacking demonstration:")
+        msg, value = err.args
+        print(f'Parsing invalid coordinates: "{value}"')
+        print(f"Error parsing coordinates: {msg}")
+        print(f'Error details - Type: ValueError, Args: ("{msg}",)')
+    
+    print("\nUnpacking demonstration:")
     x1, x2, x3 = position
     print(f"Player at x={x1}, y={x2}, z={x3}")
     print(f"Coordinates: X={x1}, Y={x2}, Z={x3}")

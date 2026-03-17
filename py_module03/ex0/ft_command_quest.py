@@ -17,3 +17,4 @@ if __name__ == "__main__":
             i += 1
         print(f"Total arguments: {len(sys.argv)}")
         print()
+    print(sys.argv)
