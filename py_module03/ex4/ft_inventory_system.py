@@ -12,11 +12,16 @@ def parse_inventory(args: list[str]) -> dict | None:
             )
 
         name, qty = arg.split(":")
+        if not name:
+            raise ValueError(
+                "Invalid format; expected format : item1:quantity1 item2:"
+                "quantity2 ..."
+            )
         try:
             qty = int(qty)
-        except ValueError:
-            raise ValueError("Invalid number or Argument; All values"
-                             " should be an int")
+        except Exception:
+            raise Exception("Invalid number or Argument; All values"
+                            " should be an int")
 
         inventory.update({name: qty})
 
