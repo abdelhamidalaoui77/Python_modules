@@ -37,7 +37,7 @@ def ft_achievement_tracker() -> None:
         .union(charlie.difference(alice).difference(bob))
     )
 
-    print(f"Rare achievements: (1 player): {rare_achiev}\n")
+    print(f"Rare achievements (1 player): {rare_achiev}\n")
 
     print(f"Alice vs Bob common: {alice.intersection(bob)}")
     print(f"Alice unique: {alice.difference(bob)}")

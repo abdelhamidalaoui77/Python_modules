@@ -1,16 +1,18 @@
 import sys
 
 
-def handle_invalid_inputs(values: list) -> None:
+def handle_invalid_inputs(values: list) -> list | None:
+    values = []
     for e in values:
         try:
-            int(e)
-        except ValueError:
-            raise ValueError("Invalid score occured !!! please ensure all"
-                             " inputs are valid numbers")
+            num = int(e)
+            values.append(num)
+        except Exception:
+            print(f"Invalid parameter: '{e}'")
+    return values
 
 
-if __name__ == "__main__":
+def main():
     print("=== Player Score Analytics ===")
     if (len(sys.argv) == 1):
         print("No scores provided. Usage: python3 ft_score_analytics.py "
@@ -18,15 +20,11 @@ if __name__ == "__main__":
     else:
         is_error = 0
         try:
-            handle_invalid_inputs(sys.argv[1:])
-        except ValueError as e:
+            global scores
+            scores = handle_invalid_inputs(sys.argv[1:])
+        except Exception:
             is_error = 1
-            print(e)
         if is_error != 1:
-            scores = []
-            for arg in sys.argv[1:]:
-                value = int(arg)
-                scores.append(value)
             print(f"Scores processed: {scores}")
             print(f"Total players: {len(scores)}")
             print(f"Total score: {sum(scores)}")
@@ -34,3 +32,10 @@ if __name__ == "__main__":
             print(f"High score: {max(scores)}")
             print(f"Low score: {min(scores)}")
             print(f"Score range: {max(scores) - min(scores)}")
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception:
+        print("An error occured while executing !!!")
