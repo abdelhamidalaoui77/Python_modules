@@ -1,18 +1,21 @@
 import math
 
 
-def parse_coordinates(coord_str: str) -> tuple[float, float, float] | None:
-    try:
-        parts = coord_str.split(',')
-        x, y, z = parts
-        x = float(x)
-        y = float(y)
-        z = float(z)
+def parse_coordinates(coord_str: str) -> tuple[float, float, float]:
+    parts = coord_str.split(",")
 
-        return (x, y, z)
+    if len(parts) != 3:
+        raise ValueError("Invalid syntax")
 
-    except Exception:
-        raise Exception("Invalid syntax")
+    coords = []
+    for part in parts:
+        part = part.strip()
+        try:
+            coords.append(float(part))
+        except ValueError as e:
+            raise ValueError(f"Error on parameter '{part}': {e}")
+
+    return (coords[0], coords[1], coords[2])
 
 
 def distance_3d(p1: tuple[float, float, float],
@@ -22,59 +25,32 @@ def distance_3d(p1: tuple[float, float, float],
     return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2 + (z2 - z1) ** 2)
 
 
-def get_player_pos() -> tuple | None:
+def get_player_pos() -> tuple[float, float, float]:
     while True:
-        given_pos = input("Enter new coordinates as floats in"
-                          " format 'x,y,z': ")
+        given = input("Enter new coordinates as floats in format 'x,y,z': ")
         try:
-            parse_pos = parse_coordinates(given_pos)
-            return parse_pos
-        except Exception as err:
-            print(err)
-
-
-def second_argumet_parsing(cordinates: str) -> tuple | None:
-    cordinates_list = cordinates.split(",")
-    for elem in cordinates_list:
-        try:
-            float(elem)
-        except Exception as e:
-            raise Exception(elem, e)
-
-
-def get_second_argument() -> None:
-    while True:
-        given_pos = input("Enter new coordinates as floats in"
-                          " format 'x,y,z': ")
-        try:
-            second_argumet_parsing(given_pos)
-            parse_pos = parse_coordinates(given_pos)
-            return parse_pos
-        except Exception as err:
-            bad_pos, error = err.args
-            raise Exception(bad_pos, error)
+            return parse_coordinates(given)
+        except ValueError as e:
+            print(e)
 
 
 if __name__ == "__main__":
-    origin = (0, 0, 0)
+    origin = (0.0, 0.0, 0.0)
 
-    print("=== Game Coordinate System ===\n\n")
+    print("=== Game Coordinate System ===\n")
+
     print("Get a first set of coordinates")
     first_pos = get_player_pos()
     print(f"Got a first tuple: {first_pos}")
+
     x, y, z = first_pos
     print(f"It includes: X={x}, Y={y}, Z={z}")
-    distance = distance_3d(origin, first_pos)
-    print(f"Distance to center: {round(distance, 4)}")
-    print("\nGet a second set of coordinates")
 
-    while True:
-        try:
-            second_pos = get_second_argument()
-            distance2 = distance_3d(second_pos, first_pos)
-            distance2 = round(distance2, 4)
-            print(f"Distance between the 2 sets of coordinates: {distance2}")
-            break
-        except Exception as err:
-            e1, e2 = err.args
-            print(f"Error on parameter '{e1}': {e2}")
+    dist = distance_3d(origin, first_pos)
+    print(f"Distance to center: {round(dist, 4)}")
+
+    print("\nGet a second set of coordinates")
+    second_pos = get_player_pos()
+
+    dist2 = distance_3d(first_pos, second_pos)
+    print(f"Distance between the 2 sets of coordinates: {round(dist2, 4)}")

@@ -1,9 +1,9 @@
 import sys
 
 
-def handle_invalid_inputs(values: list) -> list | None:
+def handle_invalid_inputs(arguments: list[str]) -> list[int]:
     values = []
-    for e in values:
+    for e in arguments:
         try:
             num = int(e)
             values.append(num)
@@ -18,13 +18,11 @@ def main():
         print("No scores provided. Usage: python3 ft_score_analytics.py "
               "<score1> <score2> ...")
     else:
-        is_error = 0
-        try:
-            global scores
-            scores = handle_invalid_inputs(sys.argv[1:])
-        except Exception:
-            is_error = 1
-        if is_error != 1:
+        scores = handle_invalid_inputs(sys.argv[1:])
+        if not scores:
+            print("No scores provided. Usage: python3 ft_score_analytics.py "
+                  "<score1> <score2> ...")
+        else:
             print(f"Scores processed: {scores}")
             print(f"Total players: {len(scores)}")
             print(f"Total score: {sum(scores)}")
@@ -35,7 +33,4 @@ def main():
 
 
 if __name__ == "__main__":
-    try:
-        main()
-    except Exception:
-        print("An error occured while executing !!!")
+    main()

@@ -1,47 +1,72 @@
+import random
 
-def remove_duplicates(achievements: list) -> set:
-    return set(achievements)
+
+def gen_player_achievements() -> set:
+    achievements = [
+        "Crafting Genius",
+        "World Savior",
+        "Master Explorer",
+        "Collector Supreme",
+        "Untouchable",
+        "Boss Slayer",
+        "Strategist",
+        "Unstoppable",
+        "Speed Runner",
+        "Survivor",
+        "Treasure Hunter",
+        "First Steps",
+        "Sharp Mind",
+    ]
+    return set(random.sample(achievements,
+                             random.randint(1, len(achievements))))
 
 
 def ft_achievement_tracker() -> None:
 
     print("=== Achievement Tracker System ===\n")
 
-    data1 = ['first_kill', 'first_kill', 'level_10', 'treasure_hunter',
-             'treasure_hunter', 'speed_demon']
-    data2 = ['first_kill', 'level_10', 'boss_slayer', 'collector',
-             'level_10', 'collector']
-    data3 = ['level_10', 'treasure_hunter', 'boss_slayer', 'speed_demon',
-             'perfectionist', 'perfectionist']
+    alice = gen_player_achievements()
+    bob = gen_player_achievements()
+    charlie = gen_player_achievements()
+    dylan = gen_player_achievements()
 
-    alice = remove_duplicates(data1)
-    bob = remove_duplicates(data2)
-    charlie = remove_duplicates(data3)
-
-    print(f"player alice achievments: {alice}")
-    print(f"player bob achievments: {bob}")
-    print(f"player charlie achievments: {charlie}")
+    print(f"Player Alice: {alice}")
+    print(f"Player Bob: {bob}")
+    print(f"Player Charlie: {charlie}")
+    print(f"Player Dylan: {dylan}")
     print()
 
-    print("=== Achievement Analytics ===")
-    all_uniqe_achiev = alice.union(bob).union(charlie)
-    print(f"All unique achievements: {all_uniqe_achiev}")
-    print(f"Total unique achievements: {len(all_uniqe_achiev)}\n")
+    all_uniqe_achiev = alice.union(bob, charlie, dylan)
+    print(f"All distinct achievements: {all_uniqe_achiev}")
+    print()
 
-    common_to_all = alice.intersection(bob).intersection(charlie)
-    print(f"Common to all players: {common_to_all}")
+    common_to_all = alice.intersection(bob, charlie, dylan)
+    print(f"Common achievements {common_to_all}")
+    print()
 
-    rare_achiev = (
-        (alice.difference(bob).difference(charlie))
-        .union(bob.difference(alice).difference(charlie))
-        .union(charlie.difference(alice).difference(bob))
-    )
+    only_alice = alice.difference(bob, charlie, dylan)
+    print(f"Only Alice has: {only_alice}")
 
-    print(f"Rare achievements (1 player): {rare_achiev}\n")
+    only_bob = bob.difference(alice, charlie, dylan)
+    print(f"Only Bob has: {only_bob}")
 
-    print(f"Alice vs Bob common: {alice.intersection(bob)}")
-    print(f"Alice unique: {alice.difference(bob)}")
-    print(f"Bob unique: {bob.difference(alice)}")
+    only_charlie = charlie.difference(alice, bob, dylan)
+    print(f"Only Charlie has: {only_charlie}")
+
+    only_dylan = dylan.difference(alice, bob, charlie)
+    print(f"Only Dylan has: {only_dylan}")
+
+    alice_missing = (bob.union(charlie, dylan)).difference(alice)
+    print(f"Alice is missing: {alice_missing}")
+
+    bob_missing = (alice.union(charlie, dylan)).difference(bob)
+    print(f"Bob is missing: {bob_missing}")
+
+    charlie_missing = (alice.union(bob, dylan)).difference(charlie)
+    print(f"Charlie is missing: {charlie_missing}")
+
+    dylan_missing = (alice.union(bob, charlie)).difference(dylan)
+    print(f"Dylan is missing: {dylan_missing}")
 
 
 if __name__ == "__main__":
