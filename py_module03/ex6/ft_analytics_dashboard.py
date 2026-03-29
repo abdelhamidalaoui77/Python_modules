@@ -1,89 +1,34 @@
-players = ["alice", "bob", "charlie", "diana"]
-
-scores = {
-    "alice": 3500,
-    "bob": 1800,
-    "charlie": 4200,
-    "diana": 2500
-}
-
-achievements = [
-    ("alice", "First Kill"),
-    ("alice", "Treasure Hunter"),
-    ("charlie", "Champion"),
-    ("charlie", "Master"),
-    ("diana", "Survivor")
-]
+import random
 
 
-def ft_analytics_dashboard() -> None:
+def main() -> None:
+    print("=== Game Data Alchemist ===\n")
 
-    print("=== Game Analytics Dashboard ===\n")
+    names = [
+        "Alice", "bob", "Charlie", "dylan",
+        "Emma", "Gregory", "john", "kevin", "Liam"
+    ]
+    print("Initial players:", names)
 
-    print("=== List Comprehension Examples ===")
+    # List comprehensions
+    capitalized = [n.capitalize() for n in names]
+    already_capitalized = [n for n in names if n[0].isupper()]
 
-    high_players = [name for name in scores if scores[name] > 2000]
-    print("High scorers (>2000):", high_players)
+    print("All capitalized:", capitalized)
+    print("Already capitalized:", already_capitalized)
 
-    double_scores = [scores[name] * 2 for name in scores]
-    print("Scores doubled:", double_scores)
+    # Dictionary comprehension (random scores)
+    scores = {n: random.randint(10, 1000) for n in capitalized}
+    print("\nScores:", scores)
 
-    active_players = [name for name in players if name in scores]
-    print("Active players:", active_players)
+    # Average
+    avg = sum(scores.values()) / len(scores)
+    print(f"Average score: {avg:.2f}")
 
-    print("\n=== Dictionary Comprehension Examples ===")
-
-    player_scores = {name: scores[name] for name in scores}
-    print("Player scores:", player_scores)
-
-    score_levels = {
-        name: ("high" if scores[name] > 3000 else "low")
-        for name in scores
-    }
-    print("Score categories:", score_levels)
-
-    achievement_total = {
-        name: sum(1 for p, _ in achievements if p == name)
-        for name in players
-    }
-    print("Achievement counts:", achievement_total)
-
-    print("\n=== Set Comprehension Examples ===")
-
-    players_with_achievements = {p for p, _ in achievements}
-    print("Players with achievements:", players_with_achievements)
-
-    achievement_names = {a for _, a in achievements}
-    print("Unique achievements:", achievement_names)
-
-    regions = {"north", "east", "central"}
-    print("Active regions:", regions)
-
-    print("\n=== Combined Analytics ===")
-
-    total_players = len(players)
-    print("Total players:", total_players)
-
-    total_achievements = len(achievements)
-    print("Total achievements:", total_achievements)
-
-    total_score = sum(scores.values())
-    average_score = total_score / len(scores)
-    print("Average score:", average_score)
-
-    top_player = max(scores, key=scores.get)
-    top_score = scores[top_player]
-    top_achievements = sum(1 for p, _ in achievements if p == top_player)
-
-    print(
-        "Top performer:",
-        top_player,
-        f"({top_score} points, {top_achievements} achievements)"
-    )
+    # High scores dict comprehension
+    high_scores = {n: s for n, s in scores.items() if s > avg}
+    print("High scores:", high_scores)
 
 
 if __name__ == "__main__":
-    try:
-        ft_analytics_dashboard()
-    except Exception as err:
-        print(f"Caught error: {err}")
+    main()

@@ -17,9 +17,3 @@ if __name__ == "__main__":
             i += 1
         print(f"Total arguments: {len(sys.argv)}")
         print()
-
-
-list = ["string", True, False, 46, 57.6]
-list[0] = "youness"
-print(list[5])
-print(list[-4:-1])
