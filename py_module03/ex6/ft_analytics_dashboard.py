@@ -8,24 +8,20 @@ def main() -> None:
         "Alice", "bob", "Charlie", "dylan",
         "Emma", "Gregory", "john", "kevin", "Liam"
     ]
-    print("Initial players:", names)
+    print(f"Initial list of players: {names}")
 
-    # List comprehensions
     capitalized = [n.capitalize() for n in names]
     already_capitalized = [n for n in names if n[0].isupper()]
 
-    print("All capitalized:", capitalized)
-    print("Already capitalized:", already_capitalized)
+    print(f"New list with all names capitalized: {capitalized}")
+    print(f"New list of capitalized names only: {already_capitalized}")
 
-    # Dictionary comprehension (random scores)
     scores = {n: random.randint(10, 1000) for n in capitalized}
-    print("\nScores:", scores)
+    print("\nScore dict:", scores)
 
-    # Average
     avg = sum(scores.values()) / len(scores)
-    print(f"Average score: {avg:.2f}")
+    print(f"Score average is {avg:.2f}")
 
-    # High scores dict comprehension
     high_scores = {n: s for n, s in scores.items() if s > avg}
     print("High scores:", high_scores)
 

@@ -3,8 +3,9 @@ from typing import Generator
 
 
 def gen_event() -> Generator[tuple[str, str], None, None]:
-    users = ["neo", "trinity", "morpheus", "smith"]
-    activities = ["jump", "hack", "fight", "escape"]
+    users = ["bob", "alice", "dylan", "charlie"]
+    activities = ["run", "eat", "sleep", "grap",
+                  "move", "climb", "swim", "release"]
 
     while True:
         user = random.choice(users)
@@ -14,32 +15,29 @@ def gen_event() -> Generator[tuple[str, str], None, None]:
 
 def consume_event(events: list[tuple[str, str]]
                   ) -> Generator[tuple[str, str], None, None]:
-    while events:
-        idx = random.randrange(len(events))
-        yield events.pop(idx)
+    while len(events) > 0:
+        removed = random.choice(events)
+        events.remove(removed)
+        yield removed
 
 
 def main() -> None:
-    print("=== Stream Wizard ===")
+    print("=== Game Data Stream Processor ===")
 
     stream = gen_event()
 
-    # 1000 events using next()
     for i in range(1000):
         user, action = next(stream)
-        print(f"Event {i}: {user} performs {action}")
+        print(f"Event {i}: Player {user} did action {action}")
 
-    # Build list of 10 events
     buffer = [next(stream) for _ in range(10)]
-    print("\nBuffered events:", buffer)
+    print("\nBuilt list of 10 events:", buffer)
 
-    # Consume generator
-    print("\nConsuming events:")
     consumer = consume_event(buffer)
 
     for event in consumer:
-        print(f"Processed: {event}")
-        print(f"Remaining: {buffer}")
+        print(f"Got event from list: {event}")
+        print(f"Remains in list: {buffer}")
 
 
 if __name__ == "__main__":

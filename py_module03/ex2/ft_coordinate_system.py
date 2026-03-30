@@ -9,7 +9,6 @@ def parse_coordinates(coord_str: str) -> tuple[float, float, float]:
 
     coords = []
     for part in parts:
-        part = part.strip()
         try:
             coords.append(float(part))
         except ValueError as e:
@@ -34,7 +33,7 @@ def get_player_pos() -> tuple[float, float, float]:
             print(e)
 
 
-if __name__ == "__main__":
+def main() -> None:
     origin = (0.0, 0.0, 0.0)
 
     print("=== Game Coordinate System ===\n")
@@ -54,3 +53,10 @@ if __name__ == "__main__":
 
     dist2 = distance_3d(first_pos, second_pos)
     print(f"Distance between the 2 sets of coordinates: {round(dist2, 4)}")
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception as e:
+        print(e)

@@ -21,7 +21,7 @@ def inventory_system(argv: list) -> None:
     inventory = dict()
     for arg in argv:
         try:
-            pair = arg.split(":", 1)
+            pair = arg.split(":")
             if len(pair) != 2:
                 raise ValueError(f"Error - invalid parameter '{arg}'")
             if pair[0] in inventory:

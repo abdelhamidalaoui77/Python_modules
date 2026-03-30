@@ -12,7 +12,7 @@ def handle_invalid_inputs(arguments: list[str]) -> list[int]:
     return values
 
 
-def main():
+def main() -> None:
     print("=== Player Score Analytics ===")
     if (len(sys.argv) == 1):
         print("No scores provided. Usage: python3 ft_score_analytics.py "
