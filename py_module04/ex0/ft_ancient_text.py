@@ -1,8 +1,8 @@
-def reading_file(filename: str) -> None:
+def reading_file(file: str) -> None:
     f = None
     try:
-        f = open(filename, "r")
-        print("Accessing Storage Vault: " + filename)
+        f = open(file)
+        print(f"Accessing Storage Vault: {file}")
         print("Connection established...\n")
         print("RECOVERED DATA:")
 
